@@ -1,8 +1,4 @@
 """
-Author@Danish Ansari
-"""
-
-"""
 Project for Week 4 of "Python Programming Essentials".
 Collection of functions to process dates.
 
@@ -28,10 +24,7 @@ def days_in_month(year, month):
         delta = date2 - date1
         return delta.days
     else:
-        return 31
-    
-print(days_in_month(2018, 6))
-    
+        return 31    
     
 def is_valid_date(year, month, day):
     """
@@ -44,12 +37,16 @@ def is_valid_date(year, month, day):
       True if year-month-day is a valid date and
       False otherwise
     """
-    if (year >= datetime.MINYEAR and year <= datetime.MAXYEAR) and (month >= 1 and month <= 12) and (day >= 1 and day <= days_in_month(year, month)):
-        return True
+    if (year >= datetime.MINYEAR and year <= datetime.MAXYEAR) is True:
+        if (month >= 1 and month <= 12) is True:
+            if (day >= 1 and day <= days_in_month(year, month)) is True:
+                return True
+            else:
+                return False
+        else:
+            return False
     else:
         return False
-    
-print(is_valid_date(2017, 11, 30))
 
 def days_between(year1, month1, day1, year2, month2, day2):
     """
@@ -66,18 +63,17 @@ def days_between(year1, month1, day1, year2, month2, day2):
       Returns 0 if either date is invalid or the second date is
       before the first date.
     """
-    if is_valid_date(year1, month1, day1) and is_valid_date(year2, month2, day2) == False:
+    if (is_valid_date(year1, month1, day1) and is_valid_date(year2, month2, day2)) is False:
         return 0
-    
-    date1 = datetime.date(year1, month1, day1)
-    date2 = datetime.date(year2, month2, day2)
-    if date2 <= date1:
-        return 0
-    
-    delta = date2 - date1
-    return delta.days
-
-print(days_between(2018, 1, 1, 2018, 3, 1))
+    else:
+        date1 = datetime.date(year1, month1, day1)
+        date2 = datetime.date(year2, month2, day2)
+        
+        if date2 <= date1:
+            return 0
+        else:
+            delta = date2 - date1
+            return delta.days
 
 def age_in_days(year, month, day):
     """
@@ -91,14 +87,12 @@ def age_in_days(year, month, day):
       Returns 0 if the input date is invalid or if the input
       date is in the future.
     """
-    date_of_birth = datetime.date(year, month, day)
+    #date_of_birth = datetime.date(year, month, day)
     
-    if is_valid_date == False:
+    if is_valid_date(year, month, day) is False:
         return 0
-    if date_of_birth >= datetime.date.today():
+    if datetime.date(year, month, day) >= datetime.date.today():
         return 0
     
-    return days_between(year, month, day, 2018, 6, 28)
-
-print(age_in_days(2018, 6, 30))
+    return days_between(year, month, day, 2018, 6, 30)
 
