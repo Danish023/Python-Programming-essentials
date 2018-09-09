@@ -20,10 +20,9 @@ def update_line(line):
     line_strip = line.lstrip()
 
     # If line is print statement,  use the format() method to add insert parentheses
-    if line_strip[ : len(PRINT)] == PRINT:
+    if line_strip[: len(PRINT)] == PRINT:
         spaces = ' ' * line.find(PRINT)
-        # print(len(spaces))
-        text = line_strip[len(PRINT) + 1: ]
+        text = line_strip[len(PRINT) + 1:]
         return '{} print({})'.format(spaces, text)
     else:
         return line
@@ -49,14 +48,6 @@ def update_pre_block(pre_block):
     Returns string corresponding to updated <pre> block with each line
     updated via process_line()
     """
-        # strip_pre_block = pre_block.strip("\n")
-        # updated_block = update_line(strip_pre_block[0])
-        #
-        # for i in strip_pre_block[1:]:
-        #     updated_block += "\n"
-        #     updated_block += update_line(i)
-        #
-        # return updated_block
 
     lines = pre_block.split("\n")
     updated_block = update_line(lines[0])
@@ -107,7 +98,7 @@ def update_file(input_file_name, output_file_name):
         updated_text += filler
 
     # Write the answer in the specified output file
-    with  open(output_file_name, "w") as processed_file:
+    with open(output_file_name, "w") as processed_file:
         processed_file.write(updated_text)
 
 
